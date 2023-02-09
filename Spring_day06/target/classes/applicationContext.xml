@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--init-method：设置bean初始化生命周期回调函数-->
+    <!--destroy-method：设置bean销毁生命周期回调函数，仅适用于单例对象-->
+    <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl" >
+        <constructor-arg name="databaseName" value="mysql"/>
+        <constructor-arg name="connectionNum" value="8"/>
+    </bean>
+    <bean id="bookService" class="com.itheima.service.impl.BookServiceImpl">
+<!--        name属性对应的值为构造方法中形参的参数名,必须要保持一致-->
+<!--        ref属性指向的是spring的IOC容器中bean对象-->
+        <constructor-arg name="bookDao" ref="bookDao" />
+    </bean>
+
+
+
+
+</beans>
